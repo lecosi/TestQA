@@ -1,16 +1,30 @@
-import unittest
+# -*- coding: utf-8 -*-
 from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import Select
+
+import unittest, time
+
+class Pruebs(unittest.TestCase):
+    def setUp(self):
+        self.driver = webdriver.Firefox()
+        self.driver.implicitly_wait(30)
+        self.base_url = "https://seguros.comparamejor.com"
+        self.verificationErrors = []
+        self.accept_next_alert = True
+
+    def test_pruebs(self):
+        driver = self.driver
+        driver.get(self.base_url + "/usuarios/login/?next=/crm/")
+        driver.find_element_by_id("id_username").send_keys("leonardo@comparamejor.com")
+        driver.find_element_by_id("id_password").clear()
+        driver.find_element_by_id("id_password").send_keys("leonardocollazos1234")
+        driver.find_element_by_xpath("//button[@type='submit']").click()
+        driver.implicitly_wait(self,30)
+        print "Login Al pelo"
+        driver.quit()
 
 
-# this is how you set up a test to run on Sauce Labs
-desired_cap = {
-    'platform': "Windows 7",
-    'browserName': "chrome",
-    'version': "47",
-}
-driver = webdriver.Remote(
-    command_executor='http://lecosi:42bf6ac2-da98-4022-9d5a-09eb000ecdd0@ondemand.saucelabs.com:80/wd/hub',
-    desired_capabilities=desired_cap)
 
-driver.get('https://wiki.saucelabs.com/display/DOCS/Python+Test+Setup+with+Sauce+Labs+Example')
-driver.quit()
+if __name__ == "__main__":
+    unittest.main()
