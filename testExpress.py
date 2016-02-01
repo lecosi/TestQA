@@ -1,11 +1,9 @@
 # -*- coding: utf-8 -*-
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.common.by import By
 from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
-import time, unittest, sys, copy
+import time, unittest,copy
 import wd.parallel
+from selenium.webdriver.support.ui import Select
+from selenium.webdriver.support.ui import WebDriverWait
 
 class parallel(unittest.TestCase):
     SAUCE_USERNAME = 'lecosi'
@@ -16,32 +14,33 @@ class parallel(unittest.TestCase):
         desired_capabilities = []
 
         browser = copy.copy(webdriver.DesiredCapabilities.FIREFOX)
-        browser['platform'] = 'Linux'
+        browser['platform'] = 'Windows 8.1'
         browser['name'] = 'Python Test Express Firefox'
         browser['tags'] = "Parallel"
-        browser['build'] = "9999"
+        browser['build'] = "1111"
         desired_capabilities += [browser]
 
         browser = copy.copy(webdriver.DesiredCapabilities.CHROME)
-        browser['platform'] = 'Windows XP'
+        browser['platform'] = 'Windows 7'
         browser['name'] = 'Python Test Express Chrome'
         browser['tags'] = "Parallel"
-        browser['build'] = "9999"
+        browser['build'] = "1111"
         desired_capabilities += [browser]
 
         self.drivers = wd.parallel.Remote(
         desired_capabilities=desired_capabilities,
         command_executor="http://" + parallel.SAUCE_USERNAME + ":" + parallel.SAUCE_ACCESS_KEY + "@ondemand.saucelabs.com:80/wd/hub")
+        print 'Conectando a SauceLabs....'
 
     @wd.parallel.multiply
     def test_parallel(self):
-
         self.driver.get("https://seguros.comparamejor.com/seguros-para-vehiculos/express/#/consultar-placa")
         self.driver.find_element_by_id("vehicle_registration").send_keys("yph79c")
-
-        self.drivers.wait(self,5)
-        print self.driver.session_id
-        self.drivers.quit()
+        self.driver.find_element_by_id("button-quote").click()
+        self.driver.find_element_by_css_selector("i.cmuj-car").click()
+        self.driver.find_element_by_xpath("//img[contains(@src,'https://segdig1.s3.amazonaws.com/media/uploads/cars/brands/renault.png')]").click()
+        Select(self.driver.find_element_by_id("models")).select_by_visible_text("2014")
+        print 'Ejecución terminada!'
 
 if __name__ == '__main__':
     unittest.main()
