@@ -73,7 +73,7 @@ class testExpress(unittest.TestCase):
         driver.find_element_by_xpath("//div[@id='step-promocode']/ul/li[2]/div").click()
         driver.find_element_by_xpath("//div[4]/div/div[2]").click()
         print "Terminó Cotización..."
-        driver.quit()
+        driver.quit(self)
 
 if __name__ == "__main__":
     unittest.main()
