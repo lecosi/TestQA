@@ -8,7 +8,7 @@ class testExpress(unittest.TestCase):
 
     def setUp(self):
         #self.driver=webdriver.Firefox()
-        url = 'http://lecosi1:zGhZ2qqNpzLi8CLAFXQT@hub.browserstack.com:80/wd/hub'
+        url = 'http://lecosi1:Xeq938dyPSnjXaVHKYpK@hub.browserstack.com:80/wd/hub'
         self.driver = webdriver.Remote(command_executor=url,
         desired_capabilities=DesiredCapabilities.CHROME)
         self.driver.implicitly_wait(30)

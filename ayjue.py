@@ -12,7 +12,6 @@ class testExpress(unittest.TestCase):
         url = 'http://lecosi1:zGhZ2qqNpzLi8CLAFXQT@hub.browserstack.com:80/wd/hub'
         self.driver = webdriver.Remote(command_executor=url,
         desired_capabilities=DesiredCapabilities.CHROME)
-        self.driver.implicitly_wait(30)
         self.base_url = "https://seguros.comparamejor.com/"
         print "Iniciando navegador..."
         self.test_insertPlaca()
@@ -74,6 +73,7 @@ class testExpress(unittest.TestCase):
         driver.find_element_by_xpath("//div[@id='step-promocode']/ul/li[2]/div").click()
         driver.find_element_by_xpath("//div[4]/div/div[2]").click()
         print "Terminó Cotización..."
+        driver.quit(self)
 
 if __name__ == "__main__":
     unittest.main()
