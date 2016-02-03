@@ -18,7 +18,7 @@ class TestLogin(unittest.TestCase):
     
     def test_login(self):
         driver = self.driver
-        driver.get(self.base_url + "/usuarios/login/")
+        driver.get(self.base_url + "/usuarios/login/?next=/crm/")
         driver.find_element_by_id("id_username").clear()
         driver.find_element_by_id("id_username").send_keys("leonardo@comparamejor.com")
         driver.find_element_by_id("id_password").clear()
