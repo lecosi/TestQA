@@ -14,9 +14,9 @@ class testExpress(unittest.TestCase):
         self.driver.implicitly_wait(5)
         self.base_url = "https://seguros.comparamejor.com/"
         print "Iniciando navegador..."
-        self.test_insertPlaca()
+        self.insertPlaca()
 
-    def test_insertPlaca(self):
+    def insertPlaca(self):
 
         driver=self.driver
         driver.get(self.base_url + "seguros-para-vehiculos/express")
