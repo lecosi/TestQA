@@ -11,7 +11,7 @@ class testExpress(unittest.TestCase):
         url = 'http://lecosi1:Xeq938dyPSnjXaVHKYpK@hub.browserstack.com:80/wd/hub'
         self.driver = webdriver.Remote(command_executor=url,
         desired_capabilities=DesiredCapabilities.CHROME)
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(5)
         self.base_url = "https://seguros.comparamejor.com/"
         print "Iniciando navegador..."
         self.test_insertPlaca()
