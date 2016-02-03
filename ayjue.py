@@ -23,19 +23,9 @@ class testExpress(unittest.TestCase):
         driver.find_element_by_id("vehicle_registration").send_keys("yph79c")
         driver.find_element_by_id("button-quote").click()
         print "ingresó placa..."
-        self.typeModel()
-
-    def typeModel(self):
-
-        driver=self.driver
         driver.find_element_by_css_selector("i.cmuj-car").click()
         driver.find_element_by_xpath("//img[contains(@src,'https://segdig1.s3.amazonaws.com/media/uploads/cars/brands/renault.png')]").click()
         print "selecciona tipo y modelo de auto..."
-        self.vehicleSpecification()
-
-    def vehicleSpecification(self):
-
-        driver = self.driver
         Select(driver.find_element_by_id("models")).select_by_visible_text("2014")
         driver.find_element_by_xpath("//div[@id='step-vehicle-model']/div[2]/span[2]").click()
         driver.find_element_by_css_selector("span.btnuj").click()
@@ -45,11 +35,6 @@ class testExpress(unittest.TestCase):
         driver.find_element_by_css_selector("i.cmuj-car").click()
         driver.find_element_by_css_selector("span.btnuj").click()
         print "selecionó las caracteristicas de vehiculo.... "
-        self.personalData()
-
-    def personalData(self):
-
-        driver=self.driver
         driver.find_element_by_css_selector("i.cmuj-identification1").click()
         driver.find_element_by_id("identification").send_keys("1070611554")
         driver.find_element_by_xpath("//div[@id='#identification']/div/div/div/div/div[2]/button").click()
@@ -65,11 +50,6 @@ class testExpress(unittest.TestCase):
         driver.find_element_by_id("mobile_phone").send_keys("3166542572")
         driver.find_element_by_xpath("//div[@id='step-email-address']/div[2]/ul/li[2]/span").click()
         print "Insertó datos Personales..."
-        self.FinalishQuote()
-
-    def FinalishQuote(self):
-
-        driver=self.driver
         driver.find_element_by_xpath("//div[@id='step-promocode']/ul/li[2]/div").click()
         driver.find_element_by_xpath("//div[4]/div/div[2]").click()
         print "Terminó Cotización..."
