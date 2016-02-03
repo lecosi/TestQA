@@ -9,7 +9,7 @@ class testExpress(unittest.TestCase):
 
     def setUp(self):
         #self.driver=webdriver.Firefox()
-        url = 'http://lecosi1:zGhZ2qqNpzLi8CLAFXQT@hub.browserstack.com:80/wd/hub'
+        url = 'http://lecosi1:Xeq938dyPSnjXaVHKYpK@hub.browserstack.com:80/wd/hub'
         self.driver = webdriver.Remote(command_executor=url,
         desired_capabilities=DesiredCapabilities.CHROME)
         self.base_url = "https://seguros.comparamejor.com/"
@@ -74,6 +74,7 @@ class testExpress(unittest.TestCase):
         driver.find_element_by_xpath("//div[4]/div/div[2]").click()
         print "Terminó Cotización..."
         driver.quit(self)
+        #276730 - 276743 - 276746 -
 
 if __name__ == "__main__":
     unittest.main()
