@@ -12,18 +12,13 @@ class TestLogin(unittest.TestCase):
         self.driver = webdriver.Remote(command_executor=url,
         desired_capabilities=DesiredCapabilities.CHROME)
         self.driver.implicitly_wait(5)
-        self.base_url = "https://seguros.comparamejor.com/crm"
+        self.base_url = "https://seguros.comparamejor.com"
         self.verificationErrors = []
         self.accept_next_alert = True
     
     def test_login(self):
         driver = self.driver
-        driver.get(self.base_url + "/usuarios/login/?next=/crm/")
-        driver.find_element_by_id("id_username").clear()
-        driver.find_element_by_id("id_username").send_keys("leonardo@comparamejor.com")
-        driver.find_element_by_id("id_password").clear()
-        driver.find_element_by_id("id_password").send_keys("leonardocollazos1234")
-        driver.find_element_by_xpath("//button[@type='submit']").click()
+        driver.get(self.base_url)
     
     def is_element_present(self, how, what):
         try: self.driver.find_element(by=how, value=what)
