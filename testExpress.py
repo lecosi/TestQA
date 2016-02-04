@@ -2,6 +2,8 @@
 import unittest
 from selenium import webdriver
 from selenium.webdriver.support.ui import Select
+from selenium.common.exceptions import NoSuchElementException
+from selenium.common.exceptions import NoAlertPresentException
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 
 class testExpress(unittest.TestCase):
@@ -11,10 +13,10 @@ class testExpress(unittest.TestCase):
         url = 'http://lecosi1:Xeq938dyPSnjXaVHKYpK@hub.browserstack.com:80/wd/hub'
         self.driver = webdriver.Remote(command_executor=url,
         desired_capabilities=DesiredCapabilities.CHROME)
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(5)
         self.base_url = "https://seguros.comparamejor.com/"
         print "Iniciando navegador..."
-        self.test_insertPlaca()
+        #self.test_insertPlaca()
 
     def test_insertPlaca(self):
 
@@ -23,17 +25,17 @@ class testExpress(unittest.TestCase):
         driver.find_element_by_id("vehicle_registration").send_keys("yph79c")
         driver.find_element_by_id("button-quote").click()
         print "ingresó placa..."
-        self.typeModel()
+        #self.test_typeModel()
 
-    def typeModel(self):
+    def test_typeModel(self):
 
         driver=self.driver
         driver.find_element_by_css_selector("i.cmuj-car").click()
         driver.find_element_by_xpath("//img[contains(@src,'https://segdig1.s3.amazonaws.com/media/uploads/cars/brands/renault.png')]").click()
         print "selecciona tipo y modelo de auto..."
-        self.vehicleSpecification()
+        #self.test_vehicleSpecification()
 
-    def vehicleSpecification(self):
+    def test_vehicleSpecification(self):
 
         driver = self.driver
         Select(driver.find_element_by_id("models")).select_by_visible_text("2014")
@@ -45,9 +47,9 @@ class testExpress(unittest.TestCase):
         driver.find_element_by_css_selector("i.cmuj-car").click()
         driver.find_element_by_css_selector("span.btnuj").click()
         print "selecionó las caracteristicas de vehiculo.... "
-        self.personalData()
+        #self.test_personalData()
 
-    def personalData(self):
+    def test_personalData(self):
 
         driver=self.driver
         driver.find_element_by_css_selector("i.cmuj-identification1").click()
@@ -65,15 +67,39 @@ class testExpress(unittest.TestCase):
         driver.find_element_by_id("mobile_phone").send_keys("3166542572")
         driver.find_element_by_xpath("//div[@id='step-email-address']/div[2]/ul/li[2]/span").click()
         print "Insertó datos Personales..."
-        self.FinalishQuote()
+        #self.test_FinalishQuote()
 
-    def FinalishQuote(self):
+    def test_FinalishQuote(self):
 
         driver=self.driver
         driver.find_element_by_xpath("//div[@id='step-promocode']/ul/li[2]/div").click()
         driver.find_element_by_xpath("//div[4]/div/div[2]").click()
         print "Terminó Cotización..."
-        driver.quit()
+
+    def is_element_present(self, how, what):
+        try: self.driver.find_element(by=how, value=what)
+        except NoSuchElementException as e: return False
+        return True
+
+    def is_alert_present(self):
+        try: self.driver.switch_to_alert()
+        except NoAlertPresentException as e: return False
+        return True
+
+    def close_alert_and_get_its_text(self):
+        try:
+            alert = self.driver.switch_to_alert()
+            alert_text = alert.text
+            if self.accept_next_alert:
+                alert.accept()
+            else:
+                alert.dismiss()
+            return alert_text
+        finally: self.accept_next_alert = True
+
+    def tearDown(self):
+        self.driver.quit()
+        self.assertEqual([], self.verificationErrors)
 
 if __name__ == "__main__":
     unittest.main()
