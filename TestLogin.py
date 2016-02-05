@@ -7,10 +7,17 @@ import unittest, time, re
 
 class TestLogin(unittest.TestCase):
     def setUp(self):
+<<<<<<< HEAD
 
         url = 'http://lecosi1:Xeq938dyPSnjXaVHKYpK@hub.browserstack.com:80/wd/hub'
         self.driver = webdriver.Remote(command_executor=url,
         desired_capabilities=DesiredCapabilities.CHROME)
+=======
+        #url = 'http://lecosi1:Xeq938dyPSnjXaVHKYpK@hub.browserstack.com:80/wd/hub'
+        #self.driver = webdriver.Remote(command_executor=url,
+        #desired_capabilities=DesiredCapabilities.CHROME)
+        self.driver = webdriver.Firefox()
+>>>>>>> 5edc1f7346ca43ffee5d024fd7ecffb1b5469cc6
         self.driver.implicitly_wait(5)
         self.base_url = "https://seguros.comparamejor.com"
         self.verificationErrors = []
@@ -18,12 +25,16 @@ class TestLogin(unittest.TestCase):
     
     def test_login(self):
         driver = self.driver
+<<<<<<< HEAD
         driver.get(self.base_url + "/crm")
         driver.find_element_by_id("id_username").clear()
         driver.find_element_by_id("id_username").send_keys("leonardo@comparamejor.com")
         driver.find_element_by_id("id_password").clear()
         driver.find_element_by_id("id_password").send_keys("leonardocollazos1234")
         driver.find_element_by_xpath("//button[@type='submit']").click()
+=======
+        driver.get(self.base_url)
+>>>>>>> 5edc1f7346ca43ffee5d024fd7ecffb1b5469cc6
     
     def is_element_present(self, how, what):
         try: self.driver.find_element(by=how, value=what)
