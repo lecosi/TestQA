@@ -61,7 +61,6 @@ class TestSoat(unittest.TestCase):
         print("tipo de dirección")
         driver.find_element_by_name("address").clear()
         driver.find_element_by_name("address").send_keys("cra 15 #80-90")
-
         driver.find_element_by_xpath("//div[@id='step-adress']/form/button").click()
         print("digita dirección")
         driver.find_element_by_css_selector("span.btnuj").click()
