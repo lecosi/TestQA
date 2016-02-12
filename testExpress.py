@@ -1,91 +1,76 @@
 # -*- coding: utf-8 -*-
-import unittest
 from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import Select
 from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import NoAlertPresentException
-from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
+import unittest, time, re
 
-class testExpress(unittest.TestCase):
-
+class TestExpress(unittest.TestCase):
     def setUp(self):
-        #self.driver=webdriver.Firefox()
-        url = 'http://lecosi1:Xeq938dyPSnjXaVHKYpK@hub.browserstack.com:80/wd/hub'
-        self.driver = webdriver.Remote(command_executor=url,
-        desired_capabilities=DesiredCapabilities.CHROME)
-        self.driver.implicitly_wait(5)
-        self.base_url = "https://seguros.comparamejor.com/"
-        print "Iniciando navegador..."
-        #self.test_insertPlaca()
-
-    def test_insertPlaca(self):
-
-        driver=self.driver
-        driver.get(self.base_url + "seguros-para-vehiculos/express")
-        driver.find_element_by_id("vehicle_registration").send_keys("yph79c")
-        driver.find_element_by_id("button-quote").click()
-        print "ingresó placa..."
-        #self.test_typeModel()
-
-    def test_typeModel(self):
-
-        driver=self.driver
-        driver.find_element_by_css_selector("i.cmuj-car").click()
-        driver.find_element_by_xpath("//img[contains(@src,'https://segdig1.s3.amazonaws.com/media/uploads/cars/brands/renault.png')]").click()
-        print "selecciona tipo y modelo de auto..."
-        #self.test_vehicleSpecification()
-
-    def test_vehicleSpecification(self):
-
+        #self.driver = webdriver.Firefox()
+        desired_cap = {'browser': 'Chrome', 'browser_version': '47.0', 'os': 'Windows', 'os_version': '7', 'resolution': '1024x768'}
+        self.driver = webdriver.Remote(
+        command_executor='http://lecosi2:qBJHZpaet33yrXqofYFZ@hub.browserstack.com:80/wd/hub',
+        desired_capabilities=desired_cap)
+        self.driver.implicitly_wait(30)
+        self.base_url = "https://seguros.comparamejor.com"
+        self.verificationErrors = []
+        self.accept_next_alert = True
+    
+    def test_express(self):
         driver = self.driver
-        Select(driver.find_element_by_id("models")).select_by_visible_text("2014")
-        driver.find_element_by_xpath("//div[@id='step-vehicle-model']/div[2]/span[2]").click()
-        driver.find_element_by_css_selector("span.btnuj").click()
-        driver.find_element_by_css_selector("span.btnuj").click()
-        driver.find_element_by_css_selector("span.text").click()
-        driver.find_element_by_css_selector("i.cmuj-path").click()
+        driver.get(self.base_url + "/seguros-para-vehiculos/express/#/consultar-placa")
+        driver.find_element_by_id("vehicle_registration").clear()
+        driver.find_element_by_id("vehicle_registration").send_keys("xcv324")
+        driver.find_element_by_xpath("//*[@id='button-quote']").click()
+        driver.implicitly_wait(5)
         driver.find_element_by_css_selector("i.cmuj-car").click()
+        driver.find_element_by_css_selector("img.img-responsive").click()
+        Select(driver.find_element_by_id("models")).select_by_visible_text("2014")
+        driver.find_element_by_xpath("//div[@id='step-vehicle-model']/div[2]/span[2]/span").click()
+        driver.find_element_by_css_selector("span.text").click()
         driver.find_element_by_css_selector("span.btnuj").click()
-        print "selecionó las caracteristicas de vehiculo.... "
-        #self.test_personalData()
-
-    def test_personalData(self):
-
-        driver=self.driver
-        driver.find_element_by_css_selector("i.cmuj-identification1").click()
+        driver.find_element_by_xpath("//*[@id='step-vehicle-reference']/ul/li[1]/span/span").click()
+        driver.find_element_by_xpath("//div[@id='step-vehicle-zero-km']/ul/li[2]/div/span").click()
+        driver.find_element_by_css_selector("div.btn-icon-content > span.icon").click()
+        driver.find_element_by_css_selector("span.text").click()
+        driver.find_element_by_xpath("//*[@id='step-identification-type']/ul/li[1]").click()
+        driver.find_element_by_id("identification").clear()
         driver.find_element_by_id("identification").send_keys("1070611554")
         driver.find_element_by_xpath("//div[@id='#identification']/div/div/div/div/div[2]/button").click()
-        driver.find_element_by_id("name").send_keys("leonardo")
-        driver.find_element_by_id("last").send_keys("collazos")
+        driver.find_element_by_id("name").clear()
+        driver.find_element_by_id("name").send_keys("test")
+        driver.find_element_by_id("last").clear()
+        driver.find_element_by_id("last").send_keys("test")
         Select(driver.find_element_by_id("occupation")).select_by_visible_text("Empleado(a)")
-        Select(driver.find_element_by_id("year")).select_by_visible_text("1990")
+        Select(driver.find_element_by_id("year")).select_by_visible_text("1980")
         Select(driver.find_element_by_id("month")).select_by_visible_text("Noviembre")
-        Select(driver.find_element_by_id("day")).select_by_visible_text("25")
+        Select(driver.find_element_by_id("day")).select_by_visible_text("18")
         Select(driver.find_element_by_id("sex")).select_by_visible_text("Masculino")
         driver.find_element_by_xpath("//div[@id='step-date-of-birth']/div[2]/div[2]/button").click()
+        driver.find_element_by_id("email").clear()
         driver.find_element_by_id("email").send_keys("leohcollazos@gmail.com")
-        driver.find_element_by_id("mobile_phone").send_keys("3166542572")
-        driver.find_element_by_xpath("//div[@id='step-email-address']/div[2]/ul/li[2]/span").click()
-        print "Insertó datos Personales..."
-        #self.test_FinalishQuote()
-
-    def test_FinalishQuote(self):
-
-        driver=self.driver
+        driver.find_element_by_id("mobile_phone").clear()
+        driver.find_element_by_id("mobile_phone").send_keys("321465732")
+        driver.find_element_by_xpath("//div[@id='step-email-address']/div[2]/ul/li[2]/span/span/span").click()
+        driver.find_element_by_id("mobile_phone").clear()
+        driver.find_element_by_id("mobile_phone").send_keys("3214657321")
+        driver.find_element_by_xpath("//div[@id='step-email-address']/div[2]/ul/li[2]/span/span/span").click()
         driver.find_element_by_xpath("//div[@id='step-promocode']/ul/li[2]/div").click()
         driver.find_element_by_xpath("//div[4]/div/div[2]").click()
-        print "Terminó Cotización..."
 
     def is_element_present(self, how, what):
         try: self.driver.find_element(by=how, value=what)
         except NoSuchElementException as e: return False
         return True
-
+    
     def is_alert_present(self):
         try: self.driver.switch_to_alert()
         except NoAlertPresentException as e: return False
         return True
-
+    
     def close_alert_and_get_its_text(self):
         try:
             alert = self.driver.switch_to_alert()
@@ -96,11 +81,10 @@ class testExpress(unittest.TestCase):
                 alert.dismiss()
             return alert_text
         finally: self.accept_next_alert = True
-
+    
     def tearDown(self):
         self.driver.quit()
         self.assertEqual([], self.verificationErrors)
 
 if __name__ == "__main__":
     unittest.main()
-

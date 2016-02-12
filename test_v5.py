@@ -8,10 +8,11 @@ import unittest, time, re
 
 class TestV5(unittest.TestCase):
     def setUp(self):
-        #self.driver = webdriver.Firefox()
-        url = 'http://lecosi1:Xeq938dyPSnjXaVHKYpK@hub.browserstack.com:80/wd/hub'
-        self.driver = webdriver.Remote(command_executor=url,
-        desired_capabilities=DesiredCapabilities.CHROME)
+        self.driver = webdriver.Firefox()
+        """desired_cap = {'browser': 'Chrome', 'browser_version': '47.0', 'os': 'Windows', 'os_version': '7', 'resolution': '800x600'}
+        self.driver = webdriver.Remote(
+        command_executor='http://lecosi2:qBJHZpaet33yrXqofYFZ@hub.browserstack.com:80/wd/hub',
+        desired_capabilities=desired_cap)"""
         self.driver.implicitly_wait(3)
         self.base_url = "https://seguros.comparamejor.com"
         self.verificationErrors = []
@@ -23,37 +24,63 @@ class TestV5(unittest.TestCase):
         driver.find_element_by_xpath("//input[@type='text']").clear()
         driver.find_element_by_xpath("//input[@type='text']").send_keys("yph79c")
         driver.find_element_by_xpath("//div[@id='step-query-registration']/div/div[2]/form/button").click()
+        print "pasó boton"
+        driver.implicitly_wait(5)
         driver.find_element_by_css_selector("div.btnuj.btn-icon-content").click()
+        print "pasó boton2"
         driver.find_element_by_css_selector("img.img-responsive").click()
+        print "pasó boton3"
         driver.find_element_by_xpath("//div[@id='step-vehicle-model']/div[2]/div[35]").click()
+        print "pasó boton4"
         driver.find_element_by_css_selector("span.btnuj").click()
-        driver.find_element_by_css_selector("span.text.ng-binding").click()
-        driver.find_element_by_css_selector("span.text.ng-binding").click()
+        print "pasó boton5"
+        driver.find_element_by_xpath("//*[@id='step-vehicle-reference']/ul/li/span").click()
+        print "pasó boton6"
+        driver.find_element_by_css_selector("#step-vehicle-complete-reference > ul > li:nth-child(1) > span").click()
+        print "pasó boton7"
         driver.find_element_by_css_selector("i.cmuj-path").click()
+        print "pasó boton8"
         driver.find_element_by_css_selector("div.btnuj.btn-icon-content").click()
-        driver.find_element_by_css_selector("span.btnuj").click()
-        driver.find_element_by_css_selector("i.cmuj-identification1").click()
+        print "pasó boton9"
+        driver.find_element_by_css_selector("#step-vehicle-body > ul > li:nth-child(1)").click()
+        print "pasó boton10"
+        driver.find_element_by_css_selector("#step-vehicle-city > ul > li:nth-child(1) > span").click()
+        driver.find_element_by_css_selector("#step-identification-type > ul > li:nth-child(1)").click()
+        print "pasó boton11"
         driver.find_element_by_xpath("//input[@type='text']").clear()
+        print "pasó boton12"
         driver.find_element_by_xpath("//input[@type='text']").send_keys("1070611554")
+        print "pasó boton13"
         driver.find_element_by_xpath("//div[@id='step-identification']/form/button").click()
+        print "pasó boton14"
         driver.find_element_by_xpath("//input[@type='text']").clear()
+        print "pasó boton15"
         driver.find_element_by_xpath("//input[@type='text']").send_keys("test")
+        print "pasó boton16"
         driver.find_element_by_xpath("(//input[@type='text'])[2]").clear()
+        print "pasó boton17"
         driver.find_element_by_xpath("(//input[@type='text'])[2]").send_keys("test")
+        print "pasó boton18"
         driver.find_element_by_xpath("//div[@id='step-complete-name']/form/button").click()
+        print "pasó boton19"
         driver.find_element_by_css_selector("div.btnuj.btn-icon-content").click()
+        print "pasó boton20"
         driver.find_element_by_xpath("//div[@id='step-date-of-birth']/table/tbody/tr/td[2]/div[2]/div[53]").click()
+        print "pasó boton21"
         driver.find_element_by_xpath("//div[@id='step-date-of-birth']/table/tbody/tr[3]/td[2]/div[2]/div[11]").click()
+        print "pasó boton22"
         driver.find_element_by_xpath("//div[@id='step-date-of-birth']/table/tbody/tr[5]/td[2]/div[2]/div[26]").click()
+        print "pasó boton23"
         driver.find_element_by_xpath("//div[@id='step-date-of-birth']/button").click()
+        print "pasó boton24"
         driver.find_element_by_name("email").clear()
         driver.find_element_by_name("email").send_keys("leohcollazos@gmail.com")
         driver.find_element_by_xpath("//div[@id='step-email-address']/form/button").click()
         driver.find_element_by_id("mobile_phone").clear()
-        driver.find_element_by_id("mobile_phone").send_keys("3131331361")
+        driver.find_element_by_id("mobile_phone").send_keys("3131111111")
         driver.find_element_by_xpath("//div[@id='step-phone-numbers']/form/button").click()
         driver.find_element_by_xpath("//div[@id='step-current-situation']/ul/li[5]/span/span").click()
-        driver.find_element_by_id("//*[@id='step-promocode']/ul/li[2]/div").click()
+        driver.find_element_by_css_selector("#step-promocode > ul > li:nth-child(2)").click()
         driver.find_element_by_xpath("//input[@type='checkbox']").click()
         driver.find_element_by_xpath("(//input[@type='checkbox'])[2]").click()
         driver.find_element_by_xpath("//div[@id='step-promocode']/button").click()
