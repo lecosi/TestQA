@@ -20,11 +20,11 @@ class TestV5(unittest.TestCase):
         driver.find_element_by_xpath("//input[@type='text']").clear()
         driver.find_element_by_xpath("//input[@type='text']").send_keys("yph79c")
         driver.find_element_by_xpath("//div[@id='step-query-registration']/div/div[2]/form/button").click()
-        print "pasó boton"
+        print "ingresa placa"
         driver.implicitly_wait(5)
         driver.find_element_by_css_selector("div.btnuj.btn-icon-content").click()
-        print "pasó boton2"
-        driver.find_element_by_css_selector("img.img-responsive").click()
+        print "tipo de vehiculo"
+        driver.find_element_by_xpath("//img[@alt='RENAULT']").click()
         print "pasó boton3"
         driver.find_element_by_xpath("//div[@id='step-vehicle-model']/div[2]/div[35]").click()
         print "pasó boton4"
@@ -49,6 +49,7 @@ class TestV5(unittest.TestCase):
         print "pasó boton13"
         driver.find_element_by_xpath("//div[@id='step-identification']/form/button").click()
         print "pasó boton14"
+        time.sleep(2)
         driver.find_element_by_xpath("//input[@type='text']").clear()
         print "pasó boton15"
         driver.find_element_by_xpath("//input[@type='text']").send_keys("test")
@@ -76,13 +77,15 @@ class TestV5(unittest.TestCase):
         driver.find_element_by_id("mobile_phone").send_keys("3131111111")
         driver.find_element_by_xpath("//div[@id='step-phone-numbers']/form/button").click()
         driver.find_element_by_xpath("//div[@id='step-current-situation']/ul/li[5]/span/span").click()
-        driver.find_element_by_css_selector("#step-promocode > ul > li:nth-child(2)").click()
-        driver.find_element_by_xpath("//input[@type='checkbox']").click()
-        driver.find_element_by_xpath("(//input[@type='checkbox'])[2]").click()
-        driver.find_element_by_xpath("//div[@id='step-promocode']/button").click()
-        driver.find_element_by_xpath("//div[@id='help-box']/div/div/div[2]/div[2]/p[2]").click()
-        driver.find_element_by_css_selector("span.icon-remove").click()
-
+        print "datos personales"
+        driver.find_element_by_xpath("//*[@id='step-promocode']/ul/li[2]/div").click()
+        print "describe situacion actual"
+        time.sleep(2)
+        driver.find_element_by_xpath("//*[@id='step-promocode']/ul/li[2]/div").click()
+        driver.find_element_by_xpath("//*[@id='step-promocode']/div[3]/label/input").click
+        driver.find_element_by_xpath("//*[@id='step-promocode']/div[4]/label/input").click()
+        print "codigo promocional"
+        driver.find_element_by_xpath("//*[@id='step-promocode']/button").click
 
     def is_element_present(self, how, what):
         try: self.driver.find_element(by=how, value=what)
