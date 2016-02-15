@@ -103,7 +103,7 @@ class TestSoat(unittest.TestCase):
         driver.find_element_by_xpath("//*[@id='step-date-of-birth']/button").click()
         time.sleep(2)
         mensaje=driver.find_element_by_xpath("//*[@id='steps-form']/h1").text
-        print "mensaje= "+ mensaje
+        #print "mensaje= "+ mensaje
         if mensaje == u"¡PREVISUALIZA TU SOAT!":
             print "Prueba termina sin problemas"
         else:
