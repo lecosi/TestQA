@@ -9,11 +9,11 @@ import unittest, time, re
 
 class TestExpress(unittest.TestCase):
     def setUp(self):
-        #self.driver = webdriver.Firefox()
-        desired_cap = {'browser': 'Chrome', 'browser_version': '47.0', 'os': 'Windows', 'os_version': '7', 'resolution': '1024x768'}
+        self.driver = webdriver.Firefox()
+        """desired_cap = {'browser': 'Chrome', 'browser_version': '47.0', 'os': 'Windows', 'os_version': '7', 'resolution': '1024x768'}
         self.driver = webdriver.Remote(
         command_executor='http://lecosi2:qBJHZpaet33yrXqofYFZ@hub.browserstack.com:80/wd/hub',
-        desired_capabilities=desired_cap)
+        desired_capabilities=desired_cap)"""
         self.driver.implicitly_wait(30)
         self.base_url = "https://seguros.comparamejor.com"
         self.verificationErrors = []
@@ -25,7 +25,7 @@ class TestExpress(unittest.TestCase):
         driver.find_element_by_id("vehicle_registration").clear()
         driver.find_element_by_id("vehicle_registration").send_keys("xcv324")
         driver.find_element_by_xpath("//*[@id='button-quote']").click()
-        driver.implicitly_wait(5)
+        time.sleep(2)
         driver.find_element_by_css_selector("i.cmuj-car").click()
         driver.find_element_by_css_selector("img.img-responsive").click()
         Select(driver.find_element_by_id("models")).select_by_visible_text("2014")
@@ -59,6 +59,7 @@ class TestExpress(unittest.TestCase):
         driver.find_element_by_id("mobile_phone").send_keys("3214657321")
         driver.find_element_by_xpath("//div[@id='step-email-address']/div[2]/ul/li[2]/span/span/span").click()
         driver.find_element_by_xpath("//div[@id='step-promocode']/ul/li[2]/div").click()
+        time.sleep(2)
         driver.find_element_by_xpath("//div[4]/div/div[2]").click()
 
     def is_element_present(self, how, what):
