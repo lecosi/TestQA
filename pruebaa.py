@@ -11,7 +11,6 @@ time.sleep(2)
 #driver.find_element_by_id("button-copy").click()
 data = browser.find_element_by_xpath("//*[@id='ip-col']/span").text
 print "la ip publica de la maquina es " +data
-print "hp julian"
 browser.quit()
 
 display.stop()
