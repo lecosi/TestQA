@@ -7,9 +7,7 @@ import unittest, time, re
 
 class TestLogin(unittest.TestCase):
     def setUp(self):
-        #url = 'http://lecosi1:Xeq938dyPSnjXaVHKYpK@hub.browserstack.com:80/wd/hub'
-        #self.driver = webdriver.Remote(command_executor=url,
-        #desired_capabilities=DesiredCapabilities.CHROME)
+        self.driver = webdriver.Remote("http://localhost:4444/wd/hub", desired_capabilities= DesiredCapabilities.FIREFOX)
         self.driver = webdriver.Firefox()
         self.driver.implicitly_wait(5)
         self.base_url = "https://seguros.comparamejor.com"

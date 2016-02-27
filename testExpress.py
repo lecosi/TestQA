@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from selenium import webdriver
+from selenium.webdriver import DesiredCapabilities
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import Select
@@ -9,11 +10,7 @@ import unittest, time, re
 
 class TestExpress(unittest.TestCase):
     def setUp(self):
-        #self.driver = webdriver.Firefox()
-        desired_cap = {'browser': 'Chrome', 'browser_version': '47.0', 'os': 'Windows', 'os_version': '7', 'resolution': '1024x768'}
-        self.driver = webdriver.Remote(
-        command_executor='http://lecosi2:qBJHZpaet33yrXqofYFZ@hub.browserstack.com:80/wd/hub',
-        desired_capabilities=desired_cap)
+        self.driver = webdriver.Remote("http://localhost:4444/wd/hub", desired_capabilities= DesiredCapabilities.FIREFOX)
         self.driver.implicitly_wait(30)
         self.base_url = "https://seguros.comparamejor.com"
         self.verificationErrors = []

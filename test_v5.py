@@ -8,7 +8,7 @@ import unittest, time, re
 
 class TestV5(unittest.TestCase):
     def setUp(self):
-        self.driver = webdriver.Firefox()
+        self.driver = webdriver.Remote("http://localhost:4444/wd/hub", desired_capabilities= DesiredCapabilities.FIREFOX)
         self.driver.implicitly_wait(3)
         self.base_url = "https://seguros.comparamejor.com"
         self.verificationErrors = []
