@@ -7,4 +7,4 @@ print ("STATUS =",status)
 if status == 200 :
 	print "AIG esta UP"
 else:
-    print ("----> se putio AIG <----")
+    print ("----> se putio AIG y que tales <----")
