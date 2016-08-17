@@ -6,5 +6,3 @@ status = r.status_code
 print "STATUS =",status
 if status == 200 :
 	print "LAMERIFY esta UP"
-else:
-    raise Exception ("se putio LAMERIFY")
