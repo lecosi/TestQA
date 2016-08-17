@@ -3,8 +3,8 @@ import requests
 
 r = requests.get('https://www.cotizadoresgenerales.com/wsCotizaAutos/CotizaAutos.asmx?wsdl')
 status = r.status_code
-print "STATUS =",status
+print ("STATUS =",status)
 if status == 200 :
 	print "AIG esta UP"
 else:
-    raise Exception ("se putio AIG")
+    print ("se putio AIG")
