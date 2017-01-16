@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import requests
 
-r = requests.get('https://www.cotizadoresgenerales.com/wsCotizaAutos/CotizaAutos.asmx?wsdl')
+r = requests.get('https://www.cotizadoresgenerales.com/xxxxxxxxxxxxxx')
 status = r.status_code
 print ("STATUS =",status)
 if status == 200 :
