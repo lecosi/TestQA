@@ -18,9 +18,9 @@ class TestLogin(unittest.TestCase):
         driver = self.driver
         driver.get(self.base_url + "/crm")
         driver.find_element_by_id("id_username").clear()
-        driver.find_element_by_id("id_username").send_keys("leonardo@comparamejor.com")
+        driver.find_element_by_id("id_username").send_keys("leonardo@xxxxxx.com")
         driver.find_element_by_id("id_password").clear()
-        driver.find_element_by_id("id_password").send_keys("leonardocollazos1234")
+        driver.find_element_by_id("id_password").send_keys("xxxxx")
         driver.find_element_by_xpath("//button[@type='submit']").click()
 
     def tearDown(self):
